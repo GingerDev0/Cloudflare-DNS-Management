@@ -73,9 +73,37 @@ To use this script, you need a Cloudflare API token with appropriate permissions
 
 **Note**: Ensure the API token has the correct permissions (Zone:Zone:Read and Zone:DNS:Edit). Keep the token secure and do not share it publicly.
 
+## Setting Up Discord Webhook 💬
+To enable Discord notifications for DNS changes, you need to set up a Discord webhook. Follow these steps to create a webhook and configure it in the script:
+
+1. **Create a Discord Server or Use an Existing One** 🖥️:
+   - Ensure you have administrative privileges in a Discord server where you want to receive notifications.
+
+2. **Create a Channel for Notifications** 📢:
+   - Create a new text channel (e.g., `dns-notifications`) or use an existing one.
+   - Ensure the bot or webhook has permission to send messages in this channel.
+
+3. **Create a Webhook** 🔗:
+   - Go to the channel settings by clicking the gear icon next to the channel name.
+   - Select "Integrations" from the left-hand menu.
+   - Click "Create Webhook" or "View Webhooks" then "New Webhook."
+   - Give the webhook a name (e.g., "DNS Manager Webhook") and optionally set an avatar.
+   - Click "Copy Webhook URL" to save the webhook URL.
+
+4. **Configure the Webhook in the Script** 🧙‍♂️:
+   - Run the setup wizard:
+     ```bash
+     python cloudflare_dns_manager.py --setup
+     ```
+   - When prompted with "Configure Discord notifications? (y/n):", enter `y`.
+   - Paste the copied **Discord Webhook URL** when prompted.
+   - The script will save the webhook URL to `cloudflare_config.json`.
+
+**Note**: Keep the webhook URL secure and do not share it publicly. The script uses this URL to send notifications to your Discord channel for DNS record changes.
+
 ## Configuration 📝
 The script uses the following configuration files:
-- `cloudflare_config.json` 🗂️: Stores Cloudflare API token, account ID, and notification settings.
+- `cloudflare_config.json` 🗂️: Stores Cloudflare API token, account ID, and notification settings (including Discord webhook URL).
 - `auto_update_config.json` 🔄: Stores settings for auto-updating DNS records.
 - `ip_cache.json` 💾: Caches the public IP address.
 - `ip_history.json` 📜: Tracks IP changes over time.
@@ -190,7 +218,7 @@ Example `records.json` for bulk adding records:
 
 ## Logging 📜
 - **Script Logs** 📋: Saved to `cloudflare_dns.log`.
-- **DNS Change Logs** 📝: Saved to `dns_change_history.log`.
+- **DNS Change Logs** 📝: Savedto `dns_change_history.log`.
 - **IP History** 📜: Saved to `ip_history.json`.
 
 ## Notifications 📢
