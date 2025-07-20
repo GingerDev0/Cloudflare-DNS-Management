@@ -34,6 +34,45 @@ This Python script provides a comprehensive tool for managing Cloudflare DNS rec
    python cloudflare_dns_manager.py --setup
    ```
 
+## Setting Up Cloudflare API
+To use this script, you need a Cloudflare API token with appropriate permissions. Follow these steps to create and configure the API token:
+
+1. **Log in to Cloudflare**:
+   - Go to [Cloudflare's dashboard](https://dash.cloudflare.com/) and log in to your account.
+
+2. **Navigate to API Tokens**:
+   - Click on "My Profile" in the top-right corner.
+   - Select "API Tokens" from the left-hand menu.
+
+3. **Create an API Token**:
+   - Click the "Create Token" button.
+   - Choose the "Create Custom Token" option and click "Get Started."
+
+4. **Configure Token Permissions**:
+   - Give the token a descriptive name (e.g., "DNS Manager Token").
+   - Under **Permissions**, add the following:
+     - **Zone:Zone:Read** - Allows reading zone details.
+     - **Zone:DNS:Edit** - Allows managing DNS records.
+   - Under **Zone Resources**, select "All zones" or specific zones you want the script to manage.
+   - Optionally, set an expiration date for the token.
+
+5. **Generate and Save the Token**:
+   - Click "Continue to Summary" and review the permissions.
+   - Click "Create Token" to generate the token.
+   - Copy the generated API token and store it securely. You will need it during the setup wizard.
+
+6. **Get Your Account ID**:
+   - In the Cloudflare dashboard, go to the "Overview" section of any zone.
+   - On the right-hand side, under the "API" section, locate and copy your **Account ID**.
+
+7. **Run the Setup Wizard**:
+   - When you run `python cloudflare_dns_manager.py --setup`, the script will prompt you to enter:
+     - **Cloudflare API Token**: Paste the token you generated.
+     - **Cloudflare Account ID**: Paste the Account ID you copied.
+   - The script will save these details to `cloudflare_config.json`.
+
+**Note**: Ensure the API token has the correct permissions (Zone:Zone:Read and Zone:DNS:Edit). Keep the token secure and do not share it publicly.
+
 ## Configuration
 The script uses the following configuration files:
 - `cloudflare_config.json`: Stores Cloudflare API token, account ID, and notification settings.
